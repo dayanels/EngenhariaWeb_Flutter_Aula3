@@ -1,20 +1,24 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, sized_box_for_whitespace
 // ignore_for_file: prefer_const_constructors
 
+import 'package:aula3/screen/page2_screen.dart';
+import 'package:aula3/store/my_drawer_store.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
 class MyDrawer extends StatelessWidget {
-  const MyDrawer({Key? key}) : super(key: key);
+  MyDrawer({Key? key}) : super(key: key);
+  MyDrawerStore store = GetIt.I<MyDrawerStore>();
 
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.only(
-        topRight: Radius.circular(80),
-        bottomRight: Radius.circular(80),
+        topRight: Radius.circular(60),
+        bottomRight: Radius.circular(300),
       ),
       child: Container(
-        width: MediaQuery.of(context).size.width * 0.4,
+        width: MediaQuery.of(context).size.width * .5,
         child: Drawer(
           child: ListView(
             children: [
@@ -29,20 +33,32 @@ class MyDrawer extends StatelessWidget {
                   ],
                 ),
               ),
+              Observer(
+                  builder: ((context) => ListTile(
+                        leading: Icon(Icons.air,
+                            color: (store.selected == 1
+                                ? Colors.blue
+                                : Colors.black)),
+                        title: Text('Home',
+                            style: TextStyle(
+                                color: (store.selected == 1
+                                    ? Colors.blue
+                                    : Colors.black))),
+                        onTap: () {
+                          store.setSelected(1);
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => Page2Screen()));
+                        },
+                      ))),
               ListTile(
-                leading: Icon(Icons.donut_large_outlined),
-                title: Text('Home'),
-                onTap: () => {},
-              ),
-              ListTile(
-                leading: Icon(Icons.donut_large_outlined),
+                leading: Icon(Icons.airplane_ticket_outlined),
                 title: Text('Tela 2'),
-                onTap: () => {},
+                onTap: () => {store.setSelected(2)},
               ),
               ListTile(
-                leading: Icon(Icons.donut_large_outlined),
+                leading: Icon(Icons.agriculture_outlined),
                 title: Text('Tela 3'),
-                onTap: () => {},
+                onTap: () => {store.setSelected(2)},
               ),
             ],
           ),
@@ -51,3 +67,17 @@ class MyDrawer extends StatelessWidget {
     );
   }
 }
+
+
+// ListTile(
+//                 leading: Icon(Icons.air,
+//                     color: (store.selected == 1 ? Colors.blue : Colors.black)),
+//                 title: Text('Home',
+//                     style: TextStyle(
+//                         color: (store.selected == 1
+//                             ? Colors.blue
+//                             : Colors.black))),
+//                 onTap: () {
+//                   store.setSelected(1);
+//                 },
+//               ),
