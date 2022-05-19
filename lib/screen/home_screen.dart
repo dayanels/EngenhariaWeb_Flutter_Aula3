@@ -11,6 +11,18 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text('Home'), centerTitle: true),
       drawer: MyDrawer(),
+      body: Container(
+        child: Center(
+          child: SizedBox(
+            width: 400,
+            height: 100,
+            child: ElevatedButton(
+              child: Text('Funfando !!'),
+              onPressed: () {},
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

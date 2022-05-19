@@ -13,7 +13,7 @@ class Page2Screen extends StatelessWidget {
         centerTitle: true,
       ),
       body: Container(
-        color: Color.fromARGB(255, 41, 177, 59),
+        color: Color.fromARGB(255, 46, 192, 66),
       ),
     );
   }

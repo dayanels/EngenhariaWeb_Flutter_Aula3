@@ -2,9 +2,10 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:aula3/screen/page2_screen.dart';
-import 'package:aula3/store/my_drawer_store.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
+import 'package:aula3/store/my_drawer_store.dart';
 
 class MyDrawer extends StatelessWidget {
   MyDrawer({Key? key}) : super(key: key);
@@ -34,22 +35,23 @@ class MyDrawer extends StatelessWidget {
                 ),
               ),
               Observer(
-                  builder: ((context) => ListTile(
-                        leading: Icon(Icons.air,
-                            color: (store.selected == 1
-                                ? Colors.blue
-                                : Colors.black)),
-                        title: Text('Home',
-                            style: TextStyle(
-                                color: (store.selected == 1
-                                    ? Colors.blue
-                                    : Colors.black))),
-                        onTap: () {
-                          store.setSelected(1);
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => Page2Screen()));
-                        },
-                      ))),
+                builder: ((context) => ListTile(
+                      leading: Icon(Icons.air,
+                          color: (store.selected == 1
+                              ? Colors.blue
+                              : Colors.black)),
+                      title: Text('Home',
+                          style: TextStyle(
+                              color: (store.selected == 1
+                                  ? Colors.blue
+                                  : Colors.black))),
+                      onTap: () {
+                        store.setSelected(1);
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => Page2Screen()));
+                      },
+                    )),
+              ),
               ListTile(
                 leading: Icon(Icons.airplane_ticket_outlined),
                 title: Text('Tela 2'),
@@ -67,17 +69,3 @@ class MyDrawer extends StatelessWidget {
     );
   }
 }
-
-
-// ListTile(
-//                 leading: Icon(Icons.air,
-//                     color: (store.selected == 1 ? Colors.blue : Colors.black)),
-//                 title: Text('Home',
-//                     style: TextStyle(
-//                         color: (store.selected == 1
-//                             ? Colors.blue
-//                             : Colors.black))),
-//                 onTap: () {
-//                   store.setSelected(1);
-//                 },
-//               ),

@@ -5,7 +5,14 @@ import 'package:get_it/get_it.dart';
 
 void main() {
   initializeSingleton();
-  runApp(MaterialApp(home: HomeScreen()));
+  runApp(MaterialApp(
+    theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(
+            seedColor: Colors.deepPurpleAccent)), // flutter 3.0.0
+    home: HomeScreen(),
+    debugShowCheckedModeBanner: false,
+  ));
 }
 
 void initializeSingleton() {
